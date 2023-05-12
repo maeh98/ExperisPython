@@ -1,7 +1,8 @@
 
 # Inizializza il dizionario dove salvare le vendite
-
 menu = {}
+
+print("Composizione Menu")
 
 # Chiedi fino a che il cliente non ha inserito tutte le vendite
 while True:
@@ -22,7 +23,7 @@ while True:
         # Stampa
         print("Il menu comprende: ")
         for key, value in menu.items():
-            print(f'{value[0]} volte {key} a un prezzo di {value[1]}€ per piatto')
+            print(f'{key} a un prezzo di {value}€ per piatto')
     
     # Aggiungi piatto
     elif operazione in ["aggiungi", "a", "aggiungi (a)"]:
@@ -33,26 +34,18 @@ while True:
 
         # Aggiungi piatto al menu se non è presente, altrimenti aumenta di uno il conteggio
         if prodotto not in menu:
-            menu[prodotto] = [1, prezzo]
+            menu[prodotto] = prezzo
         else:
-            if menu[prodotto][1] == prezzo:
-                menu[prodotto][0] += 1
-            else:
-                print('inserimento prezzo incorretto')
-                continue
+            print(f'Inserimento {prodotto} già avvenuto precedentemente a un prezzo di {prezzo}€.')
+            continue
     
     # Rimuovi piatto
     elif operazione in ["rimuovi", "r", "rimuovi (r)"]:
         print("Scegli quale piatto vuoi rimuovere")
         prodotto = input().lower().strip()
         if prodotto in menu:
-            print(f"Rimuovi 1 {prodotto}")
-            # Se c'è solo un piatto, rimuovi il piatto dal menu, altrimenti riduci la quantita di uno
-            if menu[prodotto][0] == 1:
-                del menu[prodotto]
-            else:
-                menu[prodotto][0] -= 1
-
+            print(f"Rimuovi {prodotto}")
+            del menu[prodotto]
         else:
             print("Il prodotto non è nel menu")
 
